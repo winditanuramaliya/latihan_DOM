@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gabungan JavaScript Events</title>
+    <style>
+        div {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid black;
+            width: fit-content;
+        }
+    </style>
+    <script>
+        // Fungsi digunakan di beberapa elemen
+        function changeText(id) {
+            id.innerHTML = "Hallo";
+        }
+
+        function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+        }
+
+        function upperCase() {
+            const x = document.getElementById("fname");
+            x.value = x.value.toUpperCase();
+        }
+
+        function mymessage() {
+            alert("pesan ini akan muncul setiap halaman load");
+        }
+
+        function mOver(obj) {
+            obj.innerHTML = "Thank You";
+        }
+
+        function mOut(obj) {
+            obj.innerHTML = "Mouse Over Me";
+        }
+
+        function mDown(obj) {
+            obj.style.backgroundColor = "#A1887f";
+            obj.innerHTML = "Release Me";
+        }
+
+        function mUp(obj) {
+            obj.style.backgroundColor = "#BCAAA4";
+            obj.innerHTML = "Thank You";
+        }
+
+        function showAlert() {
+            alert("Hello World!");
+        }
+
+        function myFunction() {
+            alert("Hello World");
+        }
+
+        // Event listeners ditambahkan saat halaman selesai dimuat
+        window.onload = function () {
+            mymessage(); // alert saat halaman load
+
+            // addEventListener - tampilkan tanggal
+            document.getElementById("btnEvent1").addEventListener("click", displayDate);
+
+            // addEventListener - alert
+            document.getElementById("btnEvent2").addEventListener("click", function () {
+                alert("Hello World!");
+            });
+
+            // addEventListener - alert menggunakan named function
+            document.getElementById("btnEvent3").addEventListener("click", myFunction);
+        };
+    </script>
+</head>
+<body>
+
+    <!-- Contoh 1: onclick langsung -->
+    <h1 onclick="this.innerHTML = 'Ooops!'">Click Disini (Ooops)</h1>
+
+    <!-- Contoh 2: onclick dengan fungsi -->
+    <h1 onclick="changeText(this)">Click Disini (Hallo)</h1>
+
+    <!-- Contoh 3: Button menampilkan tanggal -->
+    <h2>JavaScript HTML Events</h2>
+    <p>Click the button to display the date.</p>
+    <button onclick="displayDate()">The time is?</button>
+    <p id="demo"></p>
+
+    <!-- Contoh 4: onchange input menjadi kapital -->
+    <h2>onchange Input</h2>
+    Nama: <input type="text" id="fname" onchange="upperCase()">
+
+    <!-- Contoh 5: Button dengan event dari JS -->
+    <h2>Event dengan JS (onclick dari JS)</h2>
+    <p>Click untuk menampilkan tanggal</p>
+    <button id="myBtn">Click!!!</button>
+    <p id="demo2"></p>
+    <script>
+        document.getElementById("myBtn").onclick = function () {
+            document.getElementById("demo2").innerHTML = Date();
+        };
+    </script>
+
+    <!-- Contoh 6: onload alert (sudah dipanggil di window.onload) -->
+
+    <!-- Contoh 7: Mouse Over & Out -->
+    <h2>Mouse Events</h2>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color: aquamarine;">
+        Mouse Over Me
+    </div>
+
+    <!-- Contoh 8: Mouse Down & Up -->
+    <div onmousedown="mDown(this)" onmouseup="mUp(this)" style="background-color: beige;">
+        Click Me
+    </div>
+
+    <!-- Contoh 9: Mouseover mengubah warna teks -->
+    <h1 onmouseover="this.style.color='blue'" onmouseout="this.style.color='black'">
+        Hover to Change Color
+    </h1>
+
+    <!-- Contoh 10: addEventListener (tanggal) -->
+    <h2>JavaScript addEventListener()</h2>
+    <button id="btnEvent1">Click to show Date</button>
+    <p id="demo3"></p>
+
+    <!-- Contoh 11: addEventListener (alert fungsi anonim) -->
+    <button id="btnEvent2">Try it (Alert 1)</button>
+
+    <!-- Contoh 12: addEventListener (alert fungsi bernama) -->
+    <button id="btnEvent3">Try it (Alert 2)</button>
+
+</body>
+</html>
